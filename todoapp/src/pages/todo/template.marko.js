@@ -7,7 +7,7 @@ function create(__helpers) {
       escapeXml = __helpers.x;
 
   return function render(data, out) {
-    out.w('<!DOCTYPE html> <html><head><title>Todo List</title><link rel="stylesheet" href="styles.css"></head><body><h1 align="center">Todo List</h1><form action="/todo/add/" method="post"><p><label for="newtodo"></label><input type="text" name="newtodo" id="newtodo" autofocus></p></form><div id="div1"><ul id="todolist">');
+    out.w('<!DOCTYPE html> <html><head><title>Todo List</title><link rel="stylesheet" href="styles.css"><script>\n\t\tfunction chk(){\n\t\tvar e = document.getElementById("category");\nvar strUser = e.options[e.selectedIndex].value;\ndocument.getElementById(\'form\').action = "/todo/add/" + strUser;\n}\n</script></head><body><h1 align="center">Todo List</h1><form action method="post" id="form" onSubmit="chk()"><p><label for="newtodo"></label><input type="text" name="newtodo" id="newtodo" autofocus><div align="center"><select id="category"><option value="1">Category 1</option><option value="2">Category 2</option><option value="3">Category 3</option></select></div></p></form><div id="div1"><ul id="todolist">');
 
     forEach(data.list, function(item) {
       out.w('<li><a href="' +

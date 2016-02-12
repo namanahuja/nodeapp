@@ -4,18 +4,34 @@
     <head>
         <title>Todo List</title>
         <link rel="stylesheet" href="styles.css">
-       
+       <script>
+		function chk(){
+		var e = document.getElementById("category");
+var strUser = e.options[e.selectedIndex].value;
+document.getElementById('form').action = "/todo/add/" + strUser;
+}
+</script>
     </head>
 
     <body>
         <h1 align="center">Todo List</h1>
-         <form action="/todo/add/" method="post">
+         <form action="" method="post" id="form" onSubmit="chk()">
             <p>
                 <label for="newtodo"></label>
                 <input type="text" name="newtodo" id="newtodo" autofocus />
+                <div align="center"><select id="category">
+  <option value="1">Category 1</option>
+  <option value="2">Category 2</option>
+  <option value="3">Category 3</option>
+  
+		</select>
+		</div>
+
                 
             </p>
         </form>
+        
+
 		<div id ="div1">
 		<ul id="todolist">
 		    <li for="item in data.list">
