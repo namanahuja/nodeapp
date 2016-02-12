@@ -74,7 +74,7 @@ app.post('/todo/add/', urlencodedParser, function(req, res) {
 
 
 
-                            var collection = db.collection('list');
+                            var collection = db.collection('list3');
 
 
                             var insert = {

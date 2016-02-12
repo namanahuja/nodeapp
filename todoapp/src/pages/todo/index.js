@@ -8,7 +8,9 @@ var MongoClient = mongodb.MongoClient;
 // Connection URL. This is where your mongodb server is running.
 var url = 'mongodb://localhost:27017/nodetest';
 
+var async = require('async');
 
+locals = {};
 
 
 module.exports = function(req, res) {
@@ -20,33 +22,67 @@ module.exports = function(req, res) {
 	}
 */
 
+
+
+
+   
+
+
+
     MongoClient.connect(url, function(err, db) {
         if (err) {
             console.log('Unable to connect to the mongoDB server. Error:', err);
         } else {
             //HURRAY!! We are connected. :)
-            console.log('Connection established to', url);
+           async.parallel([
+            function(callback){
+            collection = db.collection('list');
+            collection.find().toArray(function(err,data){
+                if(err) return callback(err);
+                locals.data = data
+                callback();
+            });
+            },
 
+            function(callback){
+             collection = db.collection('list2');
+             collection.find().toArray(function(err,data2){
+                 if(err) return callback(err);
+                 locals.data2 = data2;
+                 callback();
 
-
-            var collection = db.collection('list');
-
-            collection.find( function(err, cursor) {
-                cursor.toArray(callback);
             })
+         },
+
+            function(callback){
+             collection = db.collection('list3');
+             collection.find().toArray(function(err,data3){
+                 if(err) return callback(err);
+                 locals.data3 = data3;
+                 callback();
+
+            })
+         },
+
+
+            ], function(err){
+                if(err) return next(err);
+                console.log("locals.data" + locals.data2)
+
+                    template.render({
+                    list: locals.data,
+                    list2: locals.data2,
+                    list3: locals.data3,
+                    url: "http://localhost:5000/todo/delete/"
+                     }, res)
+
+
+            })
+
 
 
         }
 
     });
 
-
-
-
-    function callback(err, listdata) {
-        template.render({
-            list: listdata,
-            url: "http://localhost:5000/todo/delete/"
-        }, res)
-    }
-}
+};

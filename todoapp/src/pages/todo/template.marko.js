@@ -20,7 +20,7 @@ function create(__helpers) {
 
     out.w('</ul></div><div id="div2"><ul id="todolist">');
 
-    forEach(data.list, function(item) {
+    forEach(data.list2, function(item) {
       out.w('<li><a href="' +
         escapeXmlAttr(data.url) +
         escapeXmlAttr(item._id) +
@@ -31,7 +31,7 @@ function create(__helpers) {
 
     out.w('</ul></div><div id="div3"><ul id="todolist">');
 
-    forEach(data.list, function(item) {
+    forEach(data.list3, function(item) {
       out.w('<li><a href="' +
         escapeXmlAttr(data.url) +
         escapeXmlAttr(item._id) +
