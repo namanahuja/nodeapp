@@ -1,0 +1,67 @@
+ body {
+     font-family: 'Open Sans', sans-serif;
+     background-color: WhiteSmoke;
+     margin: 15px;
+     color: black;
+     font-size: 20px;
+ }
+ 
+ #newtodo {
+     font-family: 'Open Sans', sans-serif;
+     font-size: 14px;
+     font-weight: normal;
+     padding: 5px 0px 5px 5px;
+     width: 100%;
+     border: 1px solid Silver;
+     background-color: White;
+ }
+ 
+ #todolist {
+     padding: 0px;
+     margin: 0px;
+     list-style-position: inside;
+ }
+ 
+ 
+ 
+ a {
+     text-decoration: none;
+     color: black;
+ }
+ 
+ #div1 {
+     width: 30%;
+     height: 200px;
+     float: left;
+ }
+ 
+ #div2 {
+     width: 33%;
+     height: 200px;
+     float: left;
+ }
+ 
+ #div3 {
+     width: 30%;
+     height: 200px;
+     float: left;
+ }
+
+ div{
+ 	margin: 5px;
+ }
+#div1 li {
+     padding: 5px 0px 5px 5px;
+     border-bottom: 1px solid Red;
+     list-style: none;
+ }
+ #div2 li {
+     padding: 5px 0px 5px 5px;
+     border-bottom: 1px solid Blue;
+     list-style: none;
+ }
+ #div3 li {
+     padding: 5px 0px 5px 5px;
+     border-bottom: 1px solid Green;
+     list-style: none;
+ }
