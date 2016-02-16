@@ -50,18 +50,9 @@
  div{
  	margin: 5px;
  }
-#div1 li {
+li {
      padding: 5px 0px 5px 5px;
      border-bottom: 1px solid Red;
      list-style: none;
  }
- #div2 li {
-     padding: 5px 0px 5px 5px;
-     border-bottom: 1px solid Blue;
-     list-style: none;
- }
- #div3 li {
-     padding: 5px 0px 5px 5px;
-     border-bottom: 1px solid Green;
-     list-style: none;
- }
+ 

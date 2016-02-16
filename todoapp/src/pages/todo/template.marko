@@ -10,11 +10,65 @@
 var strUser = e.options[e.selectedIndex].value;
 document.getElementById('form').action = "/todo/add/" + strUser;
 }
+
+function update(){
+	
+	
+ 
+
+localStorage.setItem('updatelist', JSON.stringify({list:[]}));
+
+
+var list = document.getElementsByTagName("UL")[0];
+var text = list.getElementsByTagName("LI");
+for(i=0; i<text.length; i++){
+	a=JSON.parse(localStorage.getItem('updatelist'));
+
+	a.list.push(text[i].innerText.substring(2).trim())
+	localStorage.setItem('updatelist', JSON.stringify(a));
+
+
+}
+var jsontext = localStorage.getItem('updatelist');
+
+
+document.getElementById("updatetext").value=jsontext;
+
+document.getElementById("updateform").submit();
+
+//window.location="http://localhost:5000/todo/update";
+}
 </script>
+
+
+<style id="jsbin-css">
+body {
+  padding: 30px;
+}
+
+ul {
+  list-style: none;
+}
+
+.my-handle {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+</style>
+
     </head>
 
     <body>
-        <h1 align="center">Todo List</h1>
+
+<link rel="stylesheet" href="bootstrap.min.css"/>
+  
+  
+  <!-- Latest Sortable -->
+  <script src="Sortable.js"></script>
+  
+  
+
+        <h1 draggable ="true" align="center">Todo List</h1>
          <form action="" method="post" id="form" onSubmit="chk()">
             <p>
                 <label for="newtodo"></label>
@@ -33,29 +87,49 @@ document.getElementById('form').action = "/todo/add/" + strUser;
         
 
 		<div id ="div1">
-		<ul id="todolist">
-		    <li for="item in data.list">
-		        <a href=${data.url}${item._id}><img src="delete.png" width="12" height="12">
-		        </a>&nbsp;${item.val}
+		<ul id="listWithHandle">
+		    <li for="item in data.list" id="naman"><span class="my-handle">::&nbsp;</span><a href=${data.url}${item._id}><img src="delete.png" width="12" height="12">
+		        &nbsp;</a>
+		        ${item.val}
 		    </li>
 		</ul>
 		</div>
 		<div id ="div2">
-		<ul id="todolist">
-		    <li for="item in data.list2">
+		<ul id="listWithHandle2">
+		    <li for="item in data.list2"><span class="my-handle">::&nbsp;&nbsp;</span>
 		        <a href=${data.url}${item._id}><img src="delete.png" width="12" height="12">
-		        </a>&nbsp;${item.val}
+		        &nbsp;</a>${item.val}
 		    </li>
 		</ul>
 		</div>
 		<div id ="div3">
-		<ul id="todolist">
-		    <li for="item in data.list3">
+		<ul id="listWithHandle3">
+		    <li for="item in data.list3"><span class="my-handle">::&nbsp;&nbsp;</span>
 		        <a href=${data.url}${item._id}><img src="delete.png" width="12" height="12">
-		        </a>&nbsp;${item.val}
+		        &nbsp;</a>${item.val}
 		    </li>
 		</ul>
 		</div>
-       
+		<button type="button" onclick="update()" id="update">Update</button>
+		<form method = "post" action="/todo/update" id="updateform">
+		<input type = "hidden" name = "updatetext" id="updatetext" value="naqan" />
+		</form>
+
+       <script id="jsbin-javascript">
+// List with handle
+Sortable.create(listWithHandle, {
+  handle: '.my-handle',
+  animation: 150
+});
+Sortable.create(listWithHandle2, {
+  handle: '.my-handle',
+  animation: 150
+});
+Sortable.create(listWithHandle3, {
+  handle: '.my-handle',
+  animation: 150
+});
+
+</script>
     </body>
 </html>
