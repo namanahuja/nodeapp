@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+  
+  
+  <!-- Latest Sortable -->
+  <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
+  
+  <script type="text/javascript">
+      // List with handle
+Sortable.create(listWithHandle, {
+  handle: '.my-handle',
+  animation: 150
+});
+
+  </script>
+  <style type="text/css">
+  body {
+  padding: 30px;
+}
+
+ul {
+  list-style: none;
+}
+
+.my-handle {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}</style>
+</head>
+<body>
+
+  
+  
+  
+  <!-- List with handle -->
+  <ul id="listWithHandle">
+      <li><span class="my-handle">::</span> list item text one
+      <li><span class="my-handle">::</span> list item text two
+  </ul>
+
+  
+</body>
+</html>

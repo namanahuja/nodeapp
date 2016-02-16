@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by anonymous (http://jsbin.com/qunofiwoki/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+body {
+  padding: 30px;
+}
+
+ul {
+  list-style: none;
+}
+
+.my-handle {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+</style>
+</head>
+<body>
+
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+  
+  
+  <!-- Latest Sortable -->
+  <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
+  
+  
+  <!-- List with handle -->
+  <ul id="listWithHandle">
+      <li><span class="my-handle">::</span> list item text one
+      <li><span class="my-handle">::</span> list item text two
+  </ul>
+
+  
+<script id="jsbin-javascript">
+// List with handle
+Sortable.create(listWithHandle, {
+  handle: '.my-handle',
+  animation: 150
+});
+Sortable.create(el, {
+    group: "localStorage-example",
+    store: {
+        /**
+         * Get the order of elements. Called once during initialization.
+         * @param   {Sortable}  sortable
+         * @returns {Array}
+         */
+        get: function (sortable) {
+            var order = localStorage.getItem(sortable.options.group);
+            return order ? order.split('|') : [];
+        },
+
+        /**
+         * Save the order of elements. Called onEnd (when the item is dropped).
+         * @param {Sortable}  sortable
+         */
+        set: function (sortable) {
+            var order = sortable.toArray();
+            localStorage.setItem(sortable.options.group, order.join('|'));
+        }
+    }
+})
+
+</script>
+</body>
+</html>
