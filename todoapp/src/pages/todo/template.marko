@@ -16,7 +16,7 @@ function update(){
 	
  
 
-localStorage.setItem('updatelist', JSON.stringify({list:[]}));
+localStorage.setItem('updatelist', JSON.stringify({list:[],list2:[],list3:[]}));
 
 
 var list = document.getElementsByTagName("UL")[0];
@@ -26,9 +26,26 @@ for(i=0; i<text.length; i++){
 
 	a.list.push(text[i].innerText.substring(2).trim())
 	localStorage.setItem('updatelist', JSON.stringify(a));
-
-
 }
+
+var list2 = document.getElementsByTagName("UL")[1];
+var text2 = list2.getElementsByTagName("LI");
+for(i=0; i<text2.length; i++){
+	a=JSON.parse(localStorage.getItem('updatelist'));
+
+	a.list2.push(text2[i].innerText.substring(2).trim())
+	localStorage.setItem('updatelist', JSON.stringify(a));
+}
+
+var list3 = document.getElementsByTagName("UL")[2];
+var text3 = list3.getElementsByTagName("LI");
+for(i=0; i<text3.length; i++){
+	a=JSON.parse(localStorage.getItem('updatelist'));
+
+	a.list3.push(text3[i].innerText.substring(2).trim())
+	localStorage.setItem('updatelist', JSON.stringify(a));
+}
+
 var jsontext = localStorage.getItem('updatelist');
 
 

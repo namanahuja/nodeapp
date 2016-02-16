@@ -55,7 +55,7 @@ app.get('/', require('./src/pages/todo'))
 
 app.post('/todo/add/:id', urlencodedParser, function(req, res) {
     if (req.body.newtodo != '') {
-console.log(req.body+ "add");
+        console.log(req.body + "add");
 
         /* var arrlen = JSON.parse(localStorage.getItem('list')).list.length
         var newkey = arrlen + 1;
@@ -192,45 +192,118 @@ app.get('/todo/delete/:id', function(req, res) {
 
 
 app.post('/todo/update', urlencodedParser, function(req, res) {
-   
-console.log(req.body.updatetext+ "post");
-localStorage.setItem('updatelist', req.body.updatetext)
+
+    console.log(req.body.updatetext + "post");
+    localStorage.setItem('updatelist', req.body.updatetext)
 
     MongoClient.connect(url, function(err, db) {
         if (err) {
             console.log('Unable to connect to the mongoDB server. Error:', err);
         } else {
-            a = JSON.parse(localStorage.getItem('updatelist')).list
-            var i = 0 ;
-            var collection = db.collection('list');
 
-            var q = async.queue(function(doc, callback) {
-                // code for your update
-                collection.update({
-                     _id: doc._id
-                }, {
-                    $set: { val: a[i++] }
-                }, callback);
-            }, Infinity);
+            function exec() {
+                var i = 0;
+                var a = JSON.parse(localStorage.getItem('updatelist')).list
 
-            var cursor = collection.find();
-            cursor.each(function(err, doc) {
-                if (err) throw err;
-                if (doc) q.push(doc); // dispatching doc to async.queue
-            });
+                var collection = db.collection('list');
 
-            q.drain = function() {
-                if (cursor.isClosed()) {
-                    console.log('all items have been processed');
-                   // db.close();
+                var q = async.queue(function(doc, callback) {
+                    // code for your update
+                    collection.update({
+                        _id: doc._id
+                    }, {
+                        $set: { val: a[i++] }
+                    }, callback);
+                }, Infinity);
 
+                var cursor = collection.find();
+                cursor.each(function(err, doc) {
+                    if (err) throw err;
+                    if (doc) q.push(doc); // dispatching doc to async.queue
+                });
+
+                q.drain = function() {
+                    if (cursor.isClosed()) {
+                        console.log('all items have been processed');
+                        // db.close();
+                        
+
+                    }
                 }
+
+
             }
 
+            function exec2() {
+                var i = 0;
+                var a = JSON.parse(localStorage.getItem('updatelist')).list2
 
+                var collection = db.collection('list2');
+
+                var q = async.queue(function(doc, callback) {
+                    // code for your update
+                    collection.update({
+                        _id: doc._id
+                    }, {
+                        $set: { val: a[i++] }
+                    }, callback);
+                }, Infinity);
+
+                var cursor = collection.find();
+                cursor.each(function(err, doc) {
+                    if (err) throw err;
+                    if (doc) q.push(doc); // dispatching doc to async.queue
+                });
+
+                q.drain = function() {
+                    if (cursor.isClosed()) {
+                        console.log('all items have been processed');
+                        // db.close();
+                        
+
+                    }
+                }
+
+
+            }
+
+            function exec3() {
+                var i = 0;
+                var a = JSON.parse(localStorage.getItem('updatelist')).list3
+
+                var collection = db.collection('list3');
+
+                var q = async.queue(function(doc, callback) {
+                    // code for your update
+                    collection.update({
+                        _id: doc._id
+                    }, {
+                        $set: { val: a[i++] }
+                    }, callback);
+                }, Infinity);
+
+                var cursor = collection.find();
+                cursor.each(function(err, doc) {
+                    if (err) throw err;
+                    if (doc) q.push(doc); // dispatching doc to async.queue
+                });
+
+                q.drain = function() {
+                    if (cursor.isClosed()) {
+                        console.log('all items have been processed');
+                        // db.close();
+                        
+
+                    }
+                }
+
+
+            }
+
+            exec(); exec2(); exec3();
         }
     });
-     res.redirect('../')
+    res.redirect('../')
 });
 
 
