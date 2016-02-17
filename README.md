@@ -1,2 +1,2 @@
 # nodeapp
-BASIC TODO APP  
+todo: basic todo app built in Node, Express and MongoDB
